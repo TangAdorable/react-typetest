@@ -5,14 +5,6 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import {
-    MuiColorInput,
-    MuiColorInputValue,
-    MuiColorInputColors,
-    MuiColorInputFormat
-} from 'mui-color-input'
-
-
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -23,14 +15,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-interface BasicTabsProps {
-    value: {
-        pmesii: number;
-    };
-}
+// interface BasicTabsProps {
+//     value: {
+//         pmesii: number;
+//     };
+// }
 
 
-export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
+// export default function NodeCreateUpdateDelete(props: BasicTabsProps) {
+export default function NodeCreateUpdateDelete() {
     const [isUpdate, setUpdate] = useState<boolean>(true);
     const [idNode, setidNode] = useState<string | number>(" -");
     const [country, setCountry] = useState<string>("");
@@ -38,22 +31,13 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
     const [ascope, setAscope] = useState<string>("");
     const [sub_ascope, setSub_ascope] = useState<string>("");
 
-    const [value, setValue] = React.useState<MuiColorInputValue>('#ffffff')
+    // useEffect(() => {
+    //     if (props.value.pmesii > 0) {
+    //         setUpdate(false);
+    //         setidNode(props.value.pmesii);
+    //     }
 
-    const handleChange = (newValue: string, colors: MuiColorInputColors) => {
-        setValue(newValue)
-    }
-
-    const format: MuiColorInputFormat = 'hex'
-
-
-    useEffect(() => {
-        if (props.value.pmesii > 0) {
-            setUpdate(false);
-            setidNode(props.value.pmesii);
-        }
-
-    }, [props.value.pmesii]);
+    // }, [props.value.pmesii]);
 
     return (
         <>
@@ -63,10 +47,10 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
             <Grid container
                 rowSpacing={0.5} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
             >
-                <Grid item xs={2}>
+                <Grid item xs={5}>
                     <Item>ID Node</Item>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                     <TextField
                         fullWidth
                         id="outlined-basic"
@@ -76,12 +60,10 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
-                <Grid item xs={6}>
-                </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={5}>
                     <Item>Country</Item>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                     <TextField
                         fullWidth
                         id="outlined-basic"
@@ -91,37 +73,10 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
-                <Grid item xs={1}>
-                    <Item>Color</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <MuiColorInput value={value} size="small" onChange={handleChange} format={format} />
-                </Grid>
-
-                <Grid item xs={1}>
-                    <Item>Size</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <TextField
-                        fullWidth
-                        id="outlined-number"
-                        label="Number"
-                        type="number"
-                        size="small"
-                        inputProps={{
-                            min: -25,
-                            max: 25,
-                        }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={2}>
+                <Grid item xs={5}>
                     <Item>PMESII</Item>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                     <TextField
                         fullWidth
                         id="outlined-basic"
@@ -131,32 +86,10 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
-                <Grid item xs={1}>
-                    <Item>Color</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <MuiColorInput value={value} size="small" onChange={handleChange} format={format} />
-                </Grid>
-
-                <Grid item xs={1}>
-                    <Item>Size</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <TextField
-                        fullWidth
-                        id="outlined-number"
-                        label="Number"
-                        type="number"
-                        size="small"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={5}>
                     <Item>ASCOPE</Item>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                     <TextField
                         fullWidth
                         id="outlined-basic"
@@ -166,33 +99,10 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
-                <Grid item xs={1}>
-                    <Item>Color</Item>
+                <Grid item xs={5}>
+                    <Item>Name</Item>
                 </Grid>
-                <Grid item xs={2}>
-                    <MuiColorInput value={value} size="small" onChange={handleChange} format={format} />
-                </Grid>
-
-                <Grid item xs={1}>
-                    <Item>Size</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <TextField
-                        fullWidth
-                        id="outlined-number"
-                        label="Number"
-                        type="number"
-                        size="small"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-
-                <Grid item xs={2}>
-                    <Item>Sub ASCOPE</Item>
-                </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={7}>
                     <TextField
                         fullWidth
                         id="outlined-basic"
@@ -202,29 +112,6 @@ export default function NodeCreateUpdateDeleteDelete(props: BasicTabsProps) {
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
-                <Grid item xs={1}>
-                    <Item>Color</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <MuiColorInput value={value} size="small" onChange={handleChange} format={format} />
-                </Grid>
-
-                <Grid item xs={1}>
-                    <Item>Size</Item>
-                </Grid>
-                <Grid item xs={2}>
-                    <TextField
-                        fullWidth
-                        id="outlined-number"
-                        label="Number"
-                        type="number"
-                        size="small"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-
                 <Grid item xs={6}>
                     <Stack spacing={1} direction="row">
                         <Button color="success" disabled={!isUpdate} variant="contained">

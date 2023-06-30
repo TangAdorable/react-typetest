@@ -8,6 +8,7 @@ import DescriptionNode from './DescriptionNode';
 import NodeCreateUpdateDelete from './NodeCreateUpdateDelete';
 import DescriptionRelation from './DescriptionRelation';
 import RelationCreateUpdateDelete from './RelationCreateUpdateDelete';
+import ColorSize from './ColorSize';
 
 
 interface TabPanelProps {
@@ -77,8 +78,12 @@ export default function BasicTabs(props:IndexProps) {
         </Box>
         <TabPanel value={value} index={0}>
           <Grid container spacing={1}>
-            <Grid item xs={8}>
-              <NodeCreateUpdateDelete value={{pmesii:props.value.pmesii}} />
+            <Grid item xs={4}>
+              {/* <NodeCreateUpdateDelete value={{pmesii:props.value.pmesii}} /> */}
+              <NodeCreateUpdateDelete />
+            </Grid>
+            <Grid item xs={4}>
+              {/* <ColorSize /> */}
             </Grid>
             <Grid item xs={4}>
               <DescriptionNode />

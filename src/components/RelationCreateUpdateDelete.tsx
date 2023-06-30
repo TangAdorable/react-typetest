@@ -12,7 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -111,7 +112,7 @@ export default function RelationCreateUpdateDelete(props: BasicTabsProps) {
                 </Grid>
                 <Grid item xs={1}>
                     <IconButton aria-label="delete" size="small" onClick={addIdSource}>
-                        <AddBoxIcon />
+                        <ArrowBackIcon />
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
@@ -129,7 +130,7 @@ export default function RelationCreateUpdateDelete(props: BasicTabsProps) {
                 </Grid>
                 <Grid item xs={1}>
                     <IconButton aria-label="delete" size="small" onClick={addIdTarget}>
-                        <AddBoxIcon />
+                        <ArrowBackIcon />
                     </IconButton>
                 </Grid>
                 <Grid item xs={4}>
@@ -167,6 +168,12 @@ export default function RelationCreateUpdateDelete(props: BasicTabsProps) {
                             </FormControl>
                         </Grid>
                 </Grid>
+                <Grid item xs={1}>
+                    <IconButton aria-label="delete" size="small" onClick={addIdTarget}>
+                        <AddBoxIcon />
+                    </IconButton>
+                </Grid>
+                
                 <Grid item xs={6}>
                     <Grid container spacing={0.5}>
                         <Grid item xs={6}>
@@ -187,11 +194,11 @@ export default function RelationCreateUpdateDelete(props: BasicTabsProps) {
                                     value={LineType}
                                     onChange={line_type}
                                 >
-                                    {/* <MenuItem value="">
+                                    <MenuItem value="">
                                         <em>None</em>
-                                    </MenuItem> */}
-                                    <MenuItem value={0}>- - - - - - - - - -</MenuItem>
-                                    <MenuItem value={1}>——————</MenuItem>
+                                    </MenuItem>
+                                    <MenuItem value={0} >- - - - - - - - - -</MenuItem>
+                                    <MenuItem value={1} ><hr/></MenuItem>
                                 </Select>
 
                             </FormControl>
@@ -243,6 +250,10 @@ export default function RelationCreateUpdateDelete(props: BasicTabsProps) {
                         size="small"
                         value={size}
                         onChange={(event) => setSize(event.target.value)}
+                        inputProps={{
+                            min: -25,
+                            max: 25,
+                        }}
                         InputLabelProps={{
                             shrink: true,
                         }}

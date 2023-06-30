@@ -148,8 +148,8 @@ export default function DescriptionNode() {
                 sx={{
                   width: 30,
                   height: 30,
-                  backgroundColor: "#B8926A",
                 }}
+                className={"bg-pink-500"}
               />
             </Grid>
 

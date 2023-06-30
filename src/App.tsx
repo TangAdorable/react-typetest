@@ -4,46 +4,59 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import BasicTabs from './components/BasicTabs';
 import Button from '@mui/material/Button';
+import Stack from "@mui/material/Stack";
+import DialogCreateNode from './components/DialogCreateNode';
+import PMESIIGraph1 from './components/PMESIIGraph1';
+
 
 export default function App() {
 
   const [PMESII, setPMESII] = React.useState<number>(0);
   const [Relation, setRelation] = React.useState<number>(0);
 
-  const min = 10000;
-  const max = 100000;
-  const pmesiiClick = () => {
-    setPMESII(Math.floor(Math.random() * (max - min + 1)) + min);
-  };
 
-  const relationClick = () => {
-    setRelation(Math.floor(Math.random() * (max - min + 1)) + min);
+  const [open, setOpen] = React.useState(false);
+  const CreateNodeOpen = () => {
+    setOpen(true);
+  };
+  const CreateNodeClose = () => {
+    setOpen(false);
   };
 
 
   return (
+
     <div>
       <CssBaseline />
       {/* "xs" | "sm" | "md" | "lg" | "xl" ,bgcolor:"green"*/}
       <Container maxWidth="xl" sx={{ marginTop: '50px', width: '95%' }}>
-        <Grid container spacing={1}>
-          <Grid spacing={1}
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            sx={{height: "315px",backgroundColor: "#b2a429"}}
-            
-          >
-            <Button onClick={pmesiiClick} variant="contained">Node PMESII</Button>
-            <br/>
-            <Button onClick={relationClick} color="warning" variant="contained">Relation PMESII</Button>
-          </Grid>
+
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+        >
+          <Stack spacing={1} direction="row">
+            <Button color="success" size="small" variant="contained" onClick={CreateNodeOpen}>Create Node</Button>
+            <Button color="info" size="small" variant="contained" >Create Relation</Button>
+            <Button color="warning" size="small" variant="contained" onClick={CreateNodeOpen}>Update</Button>
+          </Stack>
+
+          <Button color="error" size="small" variant="contained" onClick={CreateNodeOpen}>Delete</Button>
+        </Grid>
+
+        <DialogCreateNode open={open} CreateNodeClose={CreateNodeClose} />
+
+        <Grid container sx={{ marginTop: '10px' }} >
+
+          <PMESIIGraph1 />
           <Grid item xs={12}>
             <BasicTabs value={{ pmesii: PMESII, relation: Relation }} />
           </Grid>
         </Grid>
       </Container>
+
     </div>
   )
 
