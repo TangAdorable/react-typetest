@@ -11,7 +11,7 @@ export default function DialogCreateNode() {
     const [country, setCountry] = useState<string>("");
     const [pmesii, setPmesii] = useState<string>("");
     const [ascope, setAscope] = useState<string>("");
-    const [sub_ascope, setSub_ascope] = useState<string>("");
+    const [subAscope, setSubAscope] = useState<string>("");
 
     const Country = (event: SelectChangeEvent) => {
         setCountry(event.target.value);
@@ -96,8 +96,8 @@ export default function DialogCreateNode() {
                 <TextField sx={{ m: 1, minWidth: 300 }}
                 id="outlined-basic" label="Name"
                 variant="outlined" multiline
-                maxRows={3} value={sub_ascope}
-                onChange={(event) => setSub_ascope(event.target.value)} />
+                maxRows={3} value={subAscope}
+                onChange={(event) => setSubAscope(event.target.value)} />
             </Grid>
 
         </>

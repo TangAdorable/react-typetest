@@ -27,75 +27,37 @@ interface AlertDialogProps {
     open: boolean;
     onClose: () => void;
 }
-interface SizeFieldProps {
-    showSize: boolean;
-    addSize: () => void;
-}
 
 
-const SizeField = (props: SizeFieldProps) => {
-    const { showSize, addSize } = props;
-    return (
-        <>
-            {showSize ? (
-                <TextField
-                    fullWidth
-                    id="outlined-number"
-                    label="Size"
-                    type="number"
-                    size="small"
-                    inputProps={{
-                        min: -25,
-                        max: 25,
-                    }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-            ) : (
-                <IconButton aria-label="delete" size="small" onClick={addSize}>
-                    <AddBoxIcon />
-                </IconButton>
-            )}
-        </>
-    );
-};
-
-
-export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogProps) {
+export default function DialogUpdateNodeRelation({ open, onClose }: AlertDialogProps) {
     const [country, setCountry] = useState<string>("");
     const [pmesii, setPmesii] = useState<string>("");
     const [ascope, setAscope] = useState<string>("");
     const [subAscope, setSubAscope] = useState<string>("");
 
-    const Country = (event: SelectChangeEvent) => setCountry(event.target.value);
-    const Pmesii = (event: SelectChangeEvent) => setPmesii(event.target.value);
-    const Ascope = (event: SelectChangeEvent) => setAscope(event.target.value);
-
-    const [countrySize, setCountrySize] = useState(false);
-    const [pmesiiSize, setPmesiiSize] = useState(false);
-    const [ascopeSize, setAscopeSize] = useState(false);
-    const [subAscopeSize, setSubAscopeSize] = useState(false);
-
-    const addCountrySize = () => setCountrySize(true);
-    const addPmesiiSize = () => setPmesiiSize(true);
-    const addAscopeSize = () => setAscopeSize(true);
-    const addSubAscopeSize = () => setSubAscopeSize(true);
-
+    const Country = (event: SelectChangeEvent) => {
+        setCountry(event.target.value);
+    };
+    const Pmesii = (event: SelectChangeEvent) => {
+        setPmesii(event.target.value);
+    };
+    const Ascope = (event: SelectChangeEvent) => {
+        setAscope(event.target.value);
+    };
 
     return (
         <>
             <Dialog open={open} onClose={onClose} maxWidth={"sm"}>
-                <DialogTitle>Create Node</DialogTitle>
+                <DialogTitle>Delete Node or Relation</DialogTitle>
                 <DialogContent>
                     <Grid container
-                        rowSpacing={1} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
-                        sx={{ marginTop: '1px' }}
+                        rowSpacing={0.5} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
                     >
+
                         <Grid item xs={4}>
                             <Item>Country</Item>
                         </Grid>
-                        <Grid item xs={6.5}>
+                        <Grid item xs={7}>
                             <Grid item style={{ marginTop: "5px" }}>
                                 <FormControl
                                     variant="standard"
@@ -126,13 +88,15 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                 </FormControl>
                             </Grid>
                         </Grid>
-                        <Grid item xs={1.5}>
-                            <SizeField showSize={countrySize} addSize={addCountrySize} />
-                        </Grid>
+                        {/* <Grid item xs={1}>
+                            <IconButton aria-label="delete" size="small" >
+                                <AddBoxIcon />
+                            </IconButton>
+                        </Grid> */}
                         <Grid item xs={4}>
                             <Item>PMESII</Item>
                         </Grid>
-                        <Grid item xs={6.5}>
+                        <Grid item xs={7}>
                             <Grid item style={{ marginTop: "5px" }}>
                                 <FormControl
                                     variant="standard"
@@ -159,13 +123,15 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                 </FormControl>
                             </Grid>
                         </Grid>
-                        <Grid item xs={1.5}>
-                            <SizeField showSize={pmesiiSize} addSize={addPmesiiSize} />
+                        <Grid item xs={1}>
+                            <IconButton aria-label="delete" size="small" >
+                                <AddBoxIcon />
+                            </IconButton>
                         </Grid>
                         <Grid item xs={4}>
                             <Item>ASCOPE</Item>
                         </Grid>
-                        <Grid item xs={6.5}>
+                        <Grid item xs={7}>
                             <Grid item style={{ marginTop: "5px" }}>
                                 <FormControl
                                     variant="standard"
@@ -188,18 +154,19 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                         <MenuItem value={4}>Organization</MenuItem>
                                         <MenuItem value={5}>People</MenuItem>
                                         <MenuItem value={6}>Events</MenuItem>
-                                        <MenuItem value={7}>Actors</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
                         </Grid>
-                        <Grid item xs={1.5}>
-                            <SizeField showSize={ascopeSize} addSize={addAscopeSize} />
+                        <Grid item xs={1}>
+                            <IconButton aria-label="delete" size="small" >
+                                <AddBoxIcon />
+                            </IconButton>
                         </Grid>
                         <Grid item xs={4}>
                             <Item>Name</Item>
                         </Grid>
-                        <Grid item xs={6.5}>
+                        <Grid item xs={7}>
                             <TextField
                                 fullWidth
                                 id="outlined-basic"
@@ -211,29 +178,18 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                 maxRows={4}
                             />
                         </Grid>
-                        <Grid item xs={1.5}>
-                            <SizeField showSize={subAscopeSize} addSize={addSubAscopeSize} />
+                        <Grid item xs={1}>
+                            <IconButton aria-label="delete" size="small" >
+                                <AddBoxIcon />
+                            </IconButton>
                         </Grid>
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button color="error"
-                        onClick={()=>{
-                            onClose()
-                            setCountry("")
-                            setPmesii("")
-                            setAscope("")
-                            setSubAscope("")
-                            setCountrySize(false)
-                            setPmesiiSize(false)
-                            setAscopeSize(false)
-                            setSubAscopeSize(false)
-                        }                        
-                        }>ยกเลิก</Button>
-                    <Button color="success" onClick={onClose} variant="contained">สร้าง</Button>
+                    <Button color="error" onClick={onClose}>ยกเลิก</Button>
+                    <Button color="success" onClick={onClose} variant="contained">ลบ</Button>
                 </DialogActions>
             </Dialog>
-
         </>
     );
 }

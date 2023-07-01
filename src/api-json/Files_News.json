@@ -1,0 +1,861 @@
+{
+  "nodes": [
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6882,
+        "country": "Myanmar",
+        "destroyed": false,
+        "color": "White",
+        "size": 15,
+        "pmesii": "Military",
+        "disabled": true,
+        "label": "PMESII",
+        "url_image": "None",
+        "parent": 6881
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6883,
+        "country": "Myanmar",
+        "destroyed": false,
+        "color": "blue",
+        "size": 5,
+        "pmesii": "Military",
+        "name": "Organization",
+        "ascope": "Organization",
+        "disabled": true,
+        "position": "-440.9026921994738,-15.210863024510303",
+        "label": "ASCOPE",
+        "value": 10,
+        "url_image": "None",
+        "parent": 6882
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6884,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.KTLA",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6885,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.DF",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6886,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.NLA/PC",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6887,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.PDF",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6888,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.GF",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6889,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.KNLA/PC",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6890,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กองทัพอากาศเมียนมา",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6891,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.TLA",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6892,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.NLA",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6893,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.NU",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6894,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.ไม่ทราบฝ่าย-ปฏิปักษ์",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6895,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "บริเวณ อ.พญาตองซู จ.จ่าอินเซ็คจี รัฐกะเหรี่ยง",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6897,
+        "country": "Thailand",
+        "destroyed": false,
+        "color": "Blue",
+        "size": 15,
+        "pmesii": "Political",
+        "disabled": true,
+        "label": "PMESII",
+        "url_image": "None",
+        "parent": 6896
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6898,
+        "country": "Thailand",
+        "destroyed": false,
+        "color": "orange",
+        "size": 5,
+        "pmesii": "Political",
+        "name": "Area",
+        "ascope": "Area",
+        "disabled": true,
+        "position": "515.7650007884943,-191.49927981774294",
+        "label": "ASCOPE",
+        "value": 10,
+        "url_image": "None",
+        "parent": 6897
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6899,
+        "country": "Thailand",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Political",
+        "name": "จ.ตาก อ.แม่สอด",
+        "ascope": "Area",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6898
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6900,
+        "country": "Myanmar",
+        "destroyed": false,
+        "color": "Green",
+        "size": 15,
+        "pmesii": "Social",
+        "disabled": true,
+        "label": "PMESII",
+        "url_image": "None",
+        "parent": 6881
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6901,
+        "country": "Myanmar",
+        "destroyed": false,
+        "color": "orange",
+        "size": 5,
+        "pmesii": "Social",
+        "name": "People",
+        "ascope": "People",
+        "disabled": true,
+        "position": "135.07592787950335,-193.6599458768637",
+        "label": "ASCOPE",
+        "value": 10,
+        "url_image": "None",
+        "parent": 6900
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6902,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Social",
+        "name": "ผู้อพยพ ๒,๙๓๖ คน",
+        "ascope": "People",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6901
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6903,
+        "country": "Thailand",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Political",
+        "name": "จ.ตาก อ.แม่ระมาด",
+        "ascope": "Area",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6898
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6904,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Social",
+        "name": "ผู้อพยพ ๑,๓๐๔ คน",
+        "ascope": "People",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6901
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6905,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.KNLA",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6906,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.KNU",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6907,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 2,
+        "pmesii": "Military",
+        "name": "กกล.BGF",
+        "ascope": "Organization",
+        "disabled": true,
+        "label": "SUB_ASCOPE",
+        "url_image": "None",
+        "parent": 6883
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6881,
+        "country": "Myanmar",
+        "destroyed": false,
+        "size": 20,
+        "disabled": true,
+        "label": "Country",
+        "url_image": "None"
+      }
+    },
+    {
+      "data": {
+        "node_labels": "Files_News",
+        "id": 6896,
+        "country": "Thailand",
+        "destroyed": false,
+        "size": 20,
+        "disabled": true,
+        "label": "Country",
+        "url_image": "None"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "id": 20016,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6888,
+        "newsid": [
+          35
+        ],
+        "size": 1,
+        "color": "Yellow",
+        "line": 1,
+        "name": "ควบคุม",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20012,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6888,
+        "newsid": [
+          35
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20011,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6885,
+        "newsid": [
+          35
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 2,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19996,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6888,
+        "newsid": [
+          33
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19992,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6886,
+        "newsid": [
+          33
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 2,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19983,
+        "relation_type": "Interact",
+        "source": 6884,
+        "target": 6885,
+        "newsid": [
+          33
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 2,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20017,
+        "relation_type": "Interact",
+        "source": 6887,
+        "target": 6888,
+        "newsid": [
+          35
+        ],
+        "size": 1,
+        "color": "Yellow",
+        "line": 1,
+        "name": "ควบคุม",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20013,
+        "relation_type": "Interact",
+        "source": 6887,
+        "target": 6888,
+        "newsid": [
+          35
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19997,
+        "relation_type": "Interact",
+        "source": 6887,
+        "target": 6888,
+        "newsid": [
+          33
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19994,
+        "relation_type": "Interact",
+        "source": 6887,
+        "target": 6886,
+        "newsid": [
+          33
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 2,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 19999,
+        "relation_type": "Interact",
+        "source": 6889,
+        "target": 6888,
+        "newsid": [
+          33
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20459,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6906,
+        "newsid": [
+          31
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20457,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6905,
+        "newsid": [
+          31
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20455,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6887,
+        "newsid": [
+          31
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20454,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6884,
+        "newsid": [
+          31
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20015,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6885,
+        "newsid": [
+          35
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20014,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6891,
+        "newsid": [
+          35
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20007,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6893,
+        "newsid": [
+          32
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20005,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6892,
+        "newsid": [
+          32
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20003,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6885,
+        "newsid": [
+          32
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20002,
+        "relation_type": "Interact",
+        "source": 6890,
+        "target": 6891,
+        "newsid": [
+          32
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20010,
+        "relation_type": "Interact",
+        "source": 6894,
+        "target": 6895,
+        "newsid": [
+          34
+        ],
+        "color": "Red",
+        "size": 1,
+        "line": 1,
+        "name": "ปฏิปักษ์",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20304,
+        "relation_type": "Interact",
+        "source": 6899,
+        "target": 6902,
+        "newsid": [
+          35
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 1,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20453,
+        "relation_type": "Interact",
+        "source": 6903,
+        "target": 6904,
+        "newsid": [
+          35
+        ],
+        "size": 1,
+        "color": "Green",
+        "line": 1,
+        "name": "เกื้อกูล",
+        "disabled": true,
+        "url_path": "None"
+      }
+    },
+    {
+      "data": {
+        "id": 20461,
+        "relation_type": "Interact",
+        "source": 6907,
+        "target": 6891,
+        "newsid": [
+          38
+        ],
+        "size": 1,
+        "color": "Yellow",
+        "line": 1,
+        "name": "ควบคุม",
+        "disabled": true,
+        "url_path": "None"
+      }
+    }
+  ]
+}

@@ -2,30 +2,40 @@ import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import BasicTabs from './components/BasicTabs';
 import Button from '@mui/material/Button';
 import Stack from "@mui/material/Stack";
 import DialogCreateNode from './components/DialogCreateNode';
-import PMESIIGraph1 from './components/PMESIIGraph1';
+import DialogCreateRelation from './components/DialogCreateRelation';
+import DialogDeleteNodeRelation from './components/DialogDeleteNodeRelation';
+import DialogUpdateNodeRelation from './components/DialogUpdateNodeRelation';
+import PMESIIGraph2 from './components/PMESIIGraph2';
 
 
 export default function App() {
+  const [NodeOpen, setNodeOpen] = React.useState(false);
+  const [RelationOpen, setRelationOpen] = React.useState(false);
+  const [DeleteNodeRelation,setDeleteNodeRelation] = React.useState(false);
+  const [UpdateNodeRelation,setUpdateNodeRelation] = React.useState(false);
 
-  const [PMESII, setPMESII] = React.useState<number>(0);
-  const [Relation, setRelation] = React.useState<number>(0);
+  // create node
+  const CreateNodeOpen = () => setNodeOpen(true);
+  const CreateNodeClose = () => setNodeOpen(false);
+
+  // create relation
+  const CreateRelationOpen = () => setRelationOpen(true);
+  const CreateRelationClose = () => setRelationOpen(false);
+
+  // update node relation
+  const UpdateNodeRelationOpen = () => setUpdateNodeRelation(true);
+  const UpdateNodeRelationClose = () => setUpdateNodeRelation(false);
 
 
-  const [open, setOpen] = React.useState(false);
-  const CreateNodeOpen = () => {
-    setOpen(true);
-  };
-  const CreateNodeClose = () => {
-    setOpen(false);
-  };
+  // delete node relation
+  const DeleteNodeRelationOpen = () => setDeleteNodeRelation(true);
+  const DeleteNodeRelationClose = () => setDeleteNodeRelation(false);
 
 
   return (
-
     <div>
       <CssBaseline />
       {/* "xs" | "sm" | "md" | "lg" | "xl" ,bgcolor:"green"*/}
@@ -39,21 +49,24 @@ export default function App() {
         >
           <Stack spacing={1} direction="row">
             <Button color="success" size="small" variant="contained" onClick={CreateNodeOpen}>Create Node</Button>
-            <Button color="info" size="small" variant="contained" >Create Relation</Button>
-            <Button color="warning" size="small" variant="contained" onClick={CreateNodeOpen}>Update</Button>
+            <DialogCreateNode open={NodeOpen} onClose={CreateNodeClose} />
+
+            <Button color="info" size="small" variant="contained" onClick={CreateRelationOpen} >Create Relation</Button>
+            <DialogCreateRelation open={RelationOpen} onClose={CreateRelationClose} />
+
+            <Button color="warning" size="small" variant="contained" onClick={UpdateNodeRelationOpen} >Update</Button>
+            <DialogUpdateNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose} />
           </Stack>
 
-          <Button color="error" size="small" variant="contained" onClick={CreateNodeOpen}>Delete</Button>
+          <Button color="error" size="small" variant="contained" onClick={DeleteNodeRelationOpen}>Delete</Button>
+          <DialogDeleteNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose} delNodeRelation={{}}/>
         </Grid>
-
-        <DialogCreateNode open={open} CreateNodeClose={CreateNodeClose} />
-
         <Grid container sx={{ marginTop: '10px' }} >
 
-          <PMESIIGraph1 />
-          <Grid item xs={12}>
+          <PMESIIGraph2 />
+          {/* <Grid item xs={12}>
             <BasicTabs value={{ pmesii: PMESII, relation: Relation }} />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
 

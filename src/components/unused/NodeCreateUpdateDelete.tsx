@@ -29,7 +29,7 @@ export default function NodeCreateUpdateDelete() {
     const [country, setCountry] = useState<string>("");
     const [pmesii, setPmesii] = useState<string>("");
     const [ascope, setAscope] = useState<string>("");
-    const [sub_ascope, setSub_ascope] = useState<string>("");
+    const [subAscope, setSubAscope] = useState<string>("");
 
     // useEffect(() => {
     //     if (props.value.pmesii > 0) {
@@ -107,8 +107,8 @@ export default function NodeCreateUpdateDelete() {
                         fullWidth
                         id="outlined-basic"
                         variant="standard"
-                        value={sub_ascope}
-                        onChange={(event) => setSub_ascope(event.target.value)}
+                        value={subAscope}
+                        onChange={(event) => setSubAscope(event.target.value)}
                         style={{ backgroundColor: "#424242" }}
                     />
                 </Grid>
@@ -129,7 +129,7 @@ export default function NodeCreateUpdateDelete() {
                             setCountry("")
                             setPmesii("")
                             setAscope("")
-                            setSub_ascope("")
+                            setSubAscope("")
                         }} variant="text">
                             เคลียร์
                         </Button>

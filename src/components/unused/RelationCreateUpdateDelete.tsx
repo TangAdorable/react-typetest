@@ -12,7 +12,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Item = styled(Paper)(({ theme }) => ({

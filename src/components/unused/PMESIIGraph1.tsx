@@ -62,7 +62,7 @@ export default function PMESIIGraph1() {
                 <CytoscapeComponent 
                     cy={(cy) => { cy = cy }}
                     elements={CytoscapeComponent.normalizeElements(users)}
-                    style={{ width: '100%', height: '500px',backgroundColor: "#757575" }} layout={layout}/>
+                    style={{ width: '100%', height: '570px',backgroundColor: "#9e9e9e" }} layout={layout}/>
         </>
     )
 }
