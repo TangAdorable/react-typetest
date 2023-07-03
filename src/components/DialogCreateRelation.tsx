@@ -12,6 +12,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from "@mui/material/InputLabel";
+import { relationName as relationName_, arrowDirection as arrowDirection_ } from "../data/pmesii";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,9 +31,9 @@ interface AlertDialogProps {
 export default function DialogCreateRelation({ open, onClose }: AlertDialogProps) {
     const [sourceID, setSourceID] = useState<string | number>();
     const [targetID, setTargetID] = useState<string | number>();
-    const [relationName, setRelationName] = useState<string>('');
-    const [LineType, setLineType] = useState<string>('');
-    const [ArrowDirection, setArrowDirection] = useState<string>('');
+    const [relationName, setRelationName] = useState<string>();
+    const [LineType, setLineType] = useState<string>();
+    const [ArrowDirection, setArrowDirection] = useState<string>();
     const [size, setSize] = useState<string | number>(0);
 
     const arrow_direction = (event: SelectChangeEvent) => setArrowDirection(event.target.value);
@@ -101,18 +102,9 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                             <MenuItem value="">
                                                 <em>None</em>
                                             </MenuItem>
-                                            <MenuItem value={0}>สนับสนุน</MenuItem>
-                                            <MenuItem value={1}>พึ่งพา</MenuItem>
-                                            <MenuItem value={2}>ขัดแย้ง</MenuItem>
-                                            <MenuItem value={3}>ต่อต้าน</MenuItem>
-                                            <MenuItem value={4}>มีอิทธิพล</MenuItem>
-                                            <MenuItem value={5}>เกื้อกูล</MenuItem>
-                                            <MenuItem value={6}>ควบคุม</MenuItem>
-                                            <MenuItem value={7}>ปฏิปักษ์</MenuItem>
-                                            <MenuItem value={8}>รบกวน</MenuItem>
-                                            <MenuItem value={9}>กำหนดทิศทาง</MenuItem>
-                                            <MenuItem value={10}>ตัดสิน</MenuItem>
-                                            <MenuItem value={11}>ไกล่เกลี่ย</MenuItem>
+                                            {relationName_.map((item) => (
+                                                <MenuItem key={item.id} value={item.name}>{item.name}</MenuItem>
+                                            ))}
                                         </Select>
                                     </FormControl>
                                 </Grid>
@@ -180,10 +172,9 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                                 <MenuItem value="">
                                                     <em>None</em>
                                                 </MenuItem>
-                                                <MenuItem value={-1}>ไม่ระบุ</MenuItem>
-                                                <MenuItem value={0}>←</MenuItem>
-                                                <MenuItem value={1}>→</MenuItem>
-                                                <MenuItem value={2}>↔</MenuItem>
+                                                {arrowDirection_.map((item) => (
+                                                    <MenuItem key={item.id} value={item.name}>{item.name}</MenuItem>
+                                                ))}
                                             </Select>
                                         </FormControl>
                                     </Grid>
@@ -218,7 +209,15 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                     </Grid>
                 </DialogContent>
                 <DialogActions>
-                    <Button color="error" onClick={onClose}>ยกเลิก</Button>
+                    <Button color="error" onClick={()=>{
+                        onClose()
+                        setSourceID("")
+                        setTargetID("")
+                        setRelationName("")
+                        setLineType("")
+                        setArrowDirection("")
+                        setSize(0)
+                    }}>ยกเลิก</Button>
                     <Button color="success" onClick={onClose} variant="contained">สร้าง</Button>
                 </DialogActions>
             </Dialog>

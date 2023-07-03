@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import {countryASEAN,pmesiiName,ascopeName}from '../data/pmesii'
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -31,6 +32,7 @@ interface SizeFieldProps {
     showSize: boolean;
     addSize: () => void;
 }
+
 
 
 const SizeField = (props: SizeFieldProps) => {
@@ -83,8 +85,22 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
     const addSubAscopeSize = () => setSubAscopeSize(true);
 
 
+    const handleSubmit = (event:any) => {
+        event.preventDefault();
+
+        console.log(country)
+        // Perform form submission logic
+        console.log('Form submitted with value:', );
+        // onClose();
+
+        
+
+
+      };
+
     return (
         <>
+        <form onSubmit={handleSubmit}>
             <Dialog open={open} onClose={onClose} maxWidth={"sm"}>
                 <DialogTitle>Create Node</DialogTitle>
                 <DialogContent>
@@ -112,23 +128,16 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>Brunei Darussalam</MenuItem>
-                                        <MenuItem value={2}>Cambodia</MenuItem>
-                                        <MenuItem value={3}>Indonesia</MenuItem>
-                                        <MenuItem value={4}>Laos</MenuItem>
-                                        <MenuItem value={5}>Malaysia</MenuItem>
-                                        <MenuItem value={6}>Myanmar</MenuItem>
-                                        <MenuItem value={7}>Philippines</MenuItem>
-                                        <MenuItem value={8}>Singapore</MenuItem>
-                                        <MenuItem value={9}>Vietnam</MenuItem>
-                                        <MenuItem value={10}>Thailand</MenuItem>
+                                        {countryASEAN.map((item) =>(
+                                            <MenuItem key={item.id} value={item.name}>{item.name}</MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </Grid>
                         </Grid>
-                        <Grid item xs={1.5}>
+                        {/* <Grid item xs={1.5}>
                             <SizeField showSize={countrySize} addSize={addCountrySize} />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={4}>
                             <Item>PMESII</Item>
                         </Grid>
@@ -149,12 +158,9 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>Political</MenuItem>
-                                        <MenuItem value={2}>Military</MenuItem>
-                                        <MenuItem value={3}>Social</MenuItem>
-                                        <MenuItem value={4}>Information</MenuItem>
-                                        <MenuItem value={5}>Infrastructure</MenuItem>
-                                        <MenuItem value={6}>Economic</MenuItem>
+                                        {pmesiiName.map((item) =>(
+                                            <MenuItem key={item.id} value={item.name}>{item.name}</MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -182,13 +188,10 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        <MenuItem value={1}>Area</MenuItem>
-                                        <MenuItem value={2}>Structures</MenuItem>
-                                        <MenuItem value={3}>Capabilities</MenuItem>
-                                        <MenuItem value={4}>Organization</MenuItem>
-                                        <MenuItem value={5}>People</MenuItem>
-                                        <MenuItem value={6}>Events</MenuItem>
-                                        <MenuItem value={7}>Actors</MenuItem>
+                                        {ascopeName.map((item) =>(
+                                            <MenuItem key={item.id} value={item.name}>{item.name}</MenuItem>
+                                        ))}
+
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -230,10 +233,10 @@ export default function DialogDeleteNodeRelation({ open, onClose }: AlertDialogP
                             setSubAscopeSize(false)
                         }                        
                         }>ยกเลิก</Button>
-                    <Button color="success" onClick={onClose} variant="contained">สร้าง</Button>
+                    <Button type="submit" color="success" variant="contained">สร้าง</Button>
                 </DialogActions>
             </Dialog>
-
+            </form>
         </>
     );
 }

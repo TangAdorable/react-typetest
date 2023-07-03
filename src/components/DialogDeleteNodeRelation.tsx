@@ -41,7 +41,6 @@ export default function DialogDeleteNodeRelation(props: AlertDialogProps) {
         setPmesii("")
         setAscope("")
         setSubAscope("")
-
     },[])
 
 
