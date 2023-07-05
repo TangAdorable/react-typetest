@@ -3,7 +3,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import DrawerLeft from './components/DrawerLeft';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from './App';
-import PMESII from './components/unused/PMESIIGraph';
+import PMESIILabel from './components/PMESIILabel';
 
 export default function MyRoute() {
   const darkTheme = createTheme({
@@ -19,7 +19,7 @@ export default function MyRoute() {
         <DrawerLeft />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/pmesii" element={<PMESII />} />
+          <Route path="/pmesii" element={<PMESIILabel />} />
           <Route path="/home" element={<Navigate to="/" />} />
           {/* <Route path="/blog/:id" element={<Details/>}></Route> */}
         </Routes>

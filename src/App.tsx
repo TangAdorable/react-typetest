@@ -1,73 +1,70 @@
-import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Stack from "@mui/material/Stack";
-import DialogCreateNode from './components/DialogCreateNode';
-import DialogCreateRelation from './components/DialogCreateRelation';
-import DialogDeleteNodeRelation from './components/DialogDeleteNodeRelation';
-import DialogUpdateNodeRelation from './components/DialogUpdateNodeRelation';
-import PMESIIGraph2 from './components/PMESIIGraph2';
+
+
+import * as React from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
+  return { name, calories, fat, carbs, protein };
+}
+
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
 
 
 export default function App() {
-  const [NodeOpen, setNodeOpen] = React.useState(false);
-  const [RelationOpen, setRelationOpen] = React.useState(false);
-  const [DeleteNodeRelation,setDeleteNodeRelation] = React.useState(false);
-  const [UpdateNodeRelation,setUpdateNodeRelation] = React.useState(false);
-
-  // create node
-  const CreateNodeOpen = () => setNodeOpen(true);
-  const CreateNodeClose = () => setNodeOpen(false);
-
-  // create relation
-  const CreateRelationOpen = () => setRelationOpen(true);
-  const CreateRelationClose = () => setRelationOpen(false);
-
-  // update node relation
-  const UpdateNodeRelationOpen = () => setUpdateNodeRelation(true);
-  const UpdateNodeRelationClose = () => setUpdateNodeRelation(false);
-
-
-  // delete node relation
-  const DeleteNodeRelationOpen = () => setDeleteNodeRelation(true);
-  const DeleteNodeRelationClose = () => setDeleteNodeRelation(false);
-
 
   return (
     <div>
       <CssBaseline />
-      {/* "xs" | "sm" | "md" | "lg" | "xl" ,bgcolor:"green"*/}
       <Container maxWidth="xl" sx={{ marginTop: '50px', width: '95%' }}>
-
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-between"
-          alignItems="baseline"
-        >
-          <Stack spacing={1} direction="row">
-            <Button color="success" size="small" variant="contained" onClick={CreateNodeOpen}>Create Node</Button>
-            <DialogCreateNode open={NodeOpen} onClose={CreateNodeClose} />
-
-            <Button color="info" size="small" variant="contained" onClick={CreateRelationOpen} >Create Relation</Button>
-            <DialogCreateRelation open={RelationOpen} onClose={CreateRelationClose} />
-
-            <Button color="warning" size="small" variant="contained" onClick={UpdateNodeRelationOpen} >Update</Button>
-            <DialogUpdateNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose} />
-          </Stack>
-
-          <Button color="error" size="small" variant="contained" onClick={DeleteNodeRelationOpen}>Delete</Button>
-          <DialogDeleteNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose} delNodeRelation={{}}/>
-        </Grid>
-        <Grid container sx={{ marginTop: '10px' }} >
-
-          <PMESIIGraph2 />
-          {/* <Grid item xs={12}>
-            <BasicTabs value={{ pmesii: PMESII, relation: Relation }} />
-          </Grid> */}
-        </Grid>
+      <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
       </Container>
 
     </div>

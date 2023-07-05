@@ -47,7 +47,7 @@ export default function DialogDeleteNodeRelation(props: AlertDialogProps) {
     return (
         <>
             <Dialog open={open} onClose={onClose} maxWidth={"sm"}>
-                <DialogTitle sx={{ color: '#ffc107' }}>Delete Node or Relationship</DialogTitle>
+                <DialogTitle sx={{ color: '#ff4569' }}>Delete Node or Relationship</DialogTitle>
                 <DialogContent>
                     <Grid container
                         rowSpacing={1} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
