@@ -28,16 +28,21 @@ export default function PMESIILabel() {
 
   // create node
   const CreateNodeOpen = () => setNodeOpen(true);
-  const CreateNodeClose = async (isCreate: boolean) => {
+  const CreateNodeClose = async (isCreateNode: boolean) => {
     setNodeOpen(false);
-    if (isCreate){
-    await loadPmesiiNodes();
+    if (isCreateNode) {
+      await loadPmesiiNodes();
     }
   };
 
   // create relation
   const CreateRelationOpen = () => setRelationOpen(true);
-  const CreateRelationClose = () => setRelationOpen(false);
+  const CreateRelationClose = async (isCreateRelation:boolean) => {
+    setRelationOpen(false);
+    if(isCreateRelation){
+      await loadPmesiiNodes();
+    }
+  };
 
   // update node relation
   const UpdateNodeRelationOpen = () => setUpdateNodeRelation(true);
@@ -54,7 +59,7 @@ export default function PMESIILabel() {
     setIsLoadingPmesii(true);
     const pmesiiLabel = "LabelTest"
     // const pmesiiLabel = "Files_News"
-    // const label = "Label1";
+    // const pmesiiLabel = "Label1";
     const res = await axios.get(
       config.SOFTNIX_PMESII_URL + "/search/all-node-labels?node_labels=" + pmesiiLabel
     );
@@ -92,7 +97,7 @@ export default function PMESIILabel() {
           </Stack>
 
           <Button color="error" size="small" variant="contained" onClick={DeleteNodeRelationOpen}>Delete</Button>
-          <DialogDeleteNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose} delNodeRelation={{}} />
+          <DialogDeleteNodeRelation open={DeleteNodeRelation} onClose={DeleteNodeRelationClose}/>
         </Grid>
         <Grid container sx={{ marginTop: '10px' }}
           direction="column"

@@ -29,7 +29,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 type AlertDialogProps = {
     open: boolean;
-    onClose: (isUpdate: boolean) => void;
+    onClose: (isCreateNode: boolean) => void;
   };
 
 const SizeField = (props: any) => {

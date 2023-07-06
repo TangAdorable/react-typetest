@@ -93,13 +93,25 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
       // cyRef.current.on("click ", "edge", handleEdgeClick);
       // cyRef.current.on("click ", "node", handleNodeClick);
 
-      cyRef.current.on("tap ", "node", function(evt:any){
-        var node = evt.target;
-        console.log( 'id ' + node.id() );
-        console.log( 'country ' + node.data("country") );
-        console.log( 'pmesii ' + node.data("pmesii") );
-        console.log( 'ascope ' + node.data("ascope") );
-        console.log( 'name ' + node.data("name") );
+      // cyRef.current.on("tap", "node", function(evt:any){
+      //   var node = evt.target;
+      //   console.log( 'id ' + node.id() );
+      //   console.log( 'country ' + node.data("country") );
+      //   console.log( 'pmesii ' + node.data("pmesii") );
+      //   console.log( 'ascope ' + node.data("ascope") );
+      //   console.log( 'name ' + node.data("name") );
+
+      cyRef.current.on("click", "node", function(evt:any){
+        const node = evt.target;
+        const node_get = node.data();
+        console.log('node: ',node_get)
+      });
+
+      cyRef.current.on("click", "edge", function(evt:any){
+        const edge = evt.target;
+        const edge_get = edge.data();
+        console.log('relation: ',edge_get)
+
       });
 
     }

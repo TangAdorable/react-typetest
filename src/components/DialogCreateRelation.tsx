@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 interface AlertDialogProps {
     open: boolean;
-    onClose: () => void;
+    onClose: (isCreateRelation:boolean) => void;
 }
 
 interface dataJson {
@@ -42,8 +42,8 @@ interface dataJson {
 
 
 export default function DialogCreateRelation({ open, onClose }: AlertDialogProps) {
-    const [sourceID, setSourceID] = useState<string | number>(6510);
-    const [targetID, setTargetID] = useState<string | number>(6506);
+    const [sourceID, setSourceID] = useState<string | number>(0);
+    const [targetID, setTargetID] = useState<string | number>(0);
     const [labelName, setLabelName] = useState<string>("Relation");
     const [relationName, setRelationName] = useState<string>("");
     const [LineType, setLineType] = useState<string>();
@@ -87,7 +87,8 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
         } catch (error) {
             console.error('error:', error);
         }
-        handleCancel()
+        handleCancel();
+        onClose(true);
     };
 
     return (
@@ -111,7 +112,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={sourceID}
                                         onChange={(event) => setSourceID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                        disabled
+                                        // disabled
                                     />
                                 </Grid>
 
@@ -126,7 +127,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={targetID}
                                         onChange={(event) => setTargetID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                        disabled
+                                        // disabled
                                     />
                                 </Grid>
                                 <Grid item xs={5}>
@@ -260,7 +261,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                     <DialogActions>
                         <Button color="error" onClick={() => {
                             handleCancel()
-                            onClose()
+                            onClose(false)
                         }}>ยกเลิก</Button>
                         <LoadingButton type="submit" loading={loading} color="success" variant="contained">สร้าง</LoadingButton>
                     </DialogActions>
