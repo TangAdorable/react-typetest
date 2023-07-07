@@ -15,10 +15,12 @@ import axios from "axios";
 import config from "../constants/config";
 // import Loading from "@/components/utilities/Loading";
 import CircularProgress from '@mui/material/CircularProgress';
+import { useParams } from "react-router-dom";
+
 
 
 export default function PMESIILabel() {
-
+  const { pmesiiLabel } = useParams();
   const [NodeOpen, setNodeOpen] = React.useState(false);
   const [RelationOpen, setRelationOpen] = React.useState(false);
   const [DeleteNodeRelation, setDeleteNodeRelation] = React.useState(false);
@@ -46,20 +48,27 @@ export default function PMESIILabel() {
 
   // update node relation
   const UpdateNodeRelationOpen = () => setUpdateNodeRelation(true);
-  const UpdateNodeRelationClose = () => setUpdateNodeRelation(false);
-
+  const UpdateNodeRelationClose = async (isCreateRelation:boolean) => {
+    setUpdateNodeRelation(false);
+    if(isCreateRelation){
+      await loadPmesiiNodes();
+    }
+  }
 
   // delete node relation
   const DeleteNodeRelationOpen = () => setDeleteNodeRelation(true);
-  const DeleteNodeRelationClose = () => setDeleteNodeRelation(false);
+  const DeleteNodeRelationClose = async (isCreateRelation:boolean) => {
+    setDeleteNodeRelation(false);
+    if(isCreateRelation){
+      await loadPmesiiNodes();
+    }
+  }
 
 
 
   const loadPmesiiNodes = async () => {
     setIsLoadingPmesii(true);
-    const pmesiiLabel = "LabelTest"
-    // const pmesiiLabel = "Files_News"
-    // const pmesiiLabel = "Label1";
+    // const pmesiiLabel = "LabelTest"
     const res = await axios.get(
       config.SOFTNIX_PMESII_URL + "/search/all-node-labels?node_labels=" + pmesiiLabel
     );
@@ -73,6 +82,7 @@ export default function PMESIILabel() {
   useEffect(() => {
     loadPmesiiNodes();
     // setPmesiiAPI(Files_News);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

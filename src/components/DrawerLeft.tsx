@@ -70,6 +70,23 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+
+const titleLeft = [
+  {
+    icon: <MailIcon />,
+    name: "Home",
+    link: "/"
+  },
+  {
+    icon: <InboxIcon />,
+    name: "PMESII",
+    link: "#"
+  }
+
+]
+
+
+
 export default function DrawerLeft() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -121,13 +138,13 @@ export default function DrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
+          {titleLeft.map((text, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton href={text.link}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text.icon}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={text.name} />
               </ListItemButton>
             </ListItem>
           ))}

@@ -18,6 +18,8 @@ import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox
 import config from "../constants/config";
 import axios from "axios";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useParams } from "react-router-dom";
+
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,7 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 type AlertDialogProps = {
     open: boolean;
     onClose: (isCreateNode: boolean) => void;
-  };
+};
 
 const SizeField = (props: any) => {
     const { size, value, onChange } = props;
@@ -58,8 +60,8 @@ const SizeField = (props: any) => {
     );
 };
 
-interface dataJson {
-    labels: string,
+interface createNode {
+    labels?: string,
     country: string,
     pmesii: string,
     pmesii_size?: number,
@@ -71,6 +73,7 @@ interface dataJson {
 }
 
 export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
+    const { pmesiiLabel } = useParams<string>();
     const [country, setCountry] = useState<string>("");
     const [pmesii, setPmesii] = useState<string>("");
     const [ascope, setAscope] = useState<string>("");
@@ -81,6 +84,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
     const [subAscopeSize, setSubAscopeSize] = useState<string | number>(5);
     const [showSize, setShowSize] = useState(false);
     const [loading, setLoading] = React.useState(false);
+
 
     const handleCancel = () => {
         setCountry("");
@@ -97,8 +101,8 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
         event.preventDefault();
         setLoading(!loading);
 
-        const data: dataJson = {
-            labels: "LabelTest",
+        const data: createNode = {
+            labels: pmesiiLabel,
             country: country,
             pmesii: pmesii,
             ascope: ascope,
@@ -121,13 +125,14 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
             if (res.status === 200) {
                 // console.log(res.data)
                 // console.log("create success 200")
+                setLoading(loading)
+                handleCancel();
+                onClose(true);
             }
-            setLoading(loading)
         } catch (error) {
             console.error('error:', error);
         }
-        handleCancel();
-        onClose(true);
+
     };
 
 
@@ -140,7 +145,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                     <DialogContent>
                         <Grid container
                             rowSpacing={1} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
-                        sx={{ marginTop: '-30px' }}
+                            sx={{ marginTop: '-30px' }}
                         >
                             <Grid item xs={11.3} container
                                 direction="row"
@@ -271,7 +276,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                     </DialogContent>
                     <DialogActions>
                         <Button color="error"
-                            onClick={()=>{
+                            onClick={() => {
                                 handleCancel()
                                 onClose(false)
                             }}>ยกเลิก</Button>

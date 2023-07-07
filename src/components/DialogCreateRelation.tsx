@@ -16,6 +16,7 @@ import { relationName as relationName_, arrowDirection as arrowDirection_ } from
 import axios from "axios";
 import config from "../constants/config";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useMyContext } from "./context/pmesiiContext";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -27,10 +28,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 interface AlertDialogProps {
     open: boolean;
-    onClose: (isCreateRelation:boolean) => void;
+    onClose: (isCreateRelation: boolean) => void;
 }
 
-interface dataJson {
+interface createRelation {
     node_id_1: number,
     node_id_2: number,
     label: string,
@@ -39,7 +40,6 @@ interface dataJson {
     arrow_direction: number,
     size: number
 }
-
 
 export default function DialogCreateRelation({ open, onClose }: AlertDialogProps) {
     const [sourceID, setSourceID] = useState<string | number>(0);
@@ -50,23 +50,39 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
     const [ArrowDirection, setArrowDirection] = useState<string>();
     const [size, setSize] = useState<string | number>(0);
     const [loading, setLoading] = React.useState(false);
+    const { value } = useMyContext();
 
     const handleCancel = () => {
-        setSourceID("")
-        setTargetID("")
-        setLabelName("")
+        setSourceID(0)
+        setTargetID(0)
+        setLabelName("Relation") // fix ไปก่อน
         setRelationName("")
         setLineType("")
         setArrowDirection("")
         setSize(0)
         setLoading(false)
     };
+      
+      useEffect(() => {
+        if (value.node_labels !== undefined) {
+          if (sourceID === 0) {
+            // คลิกครั้งแรก - เก็บค่าใน setSourceID
+            setSourceID(value.id);
+            console.log(value.id);
+          } else if (targetID === 0 && sourceID !== value.id) {
+            // คลิกครั้งที่สอง (และไม่ใช่คลิกเดียวกันกับ sourceID) - เก็บค่าใน setTargetID
+            setTargetID(value.id);
+            console.log(value.id);
+          }
+        }
+      }, [value, sourceID, targetID]);
+      
 
     const handleSubmit = async (event: any) => {
         event.preventDefault();
         setLoading(!loading);
 
-        const data: dataJson = {
+        const data: createRelation = {
             node_id_1: parseInt(String(sourceID), 10),
             node_id_2: parseInt(String(targetID), 10),
             label: labelName,
@@ -75,20 +91,21 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
             arrow_direction: parseInt(String(ArrowDirection), 10),
             size: parseInt(String(size), 10),
         }
+        console.log(data)
 
         try {
             // await new Promise(r => setTimeout(r, 2000));
             const res = await axios.post(config.SOFTNIX_PMESII_URL + "/create/relationship", data);
             if (res.status === 200) {
-                // console.log(res.data)
                 console.log("create success 200")
+                handleCancel();
+                onClose(true);
+                setLoading(loading)
             }
-            setLoading(loading)
         } catch (error) {
             console.error('error:', error);
         }
-        handleCancel();
-        onClose(true);
+
     };
 
     return (
@@ -112,7 +129,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={sourceID}
                                         onChange={(event) => setSourceID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                        // disabled
+                                    // disabled
                                     />
                                 </Grid>
 
@@ -127,7 +144,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={targetID}
                                         onChange={(event) => setTargetID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                        // disabled
+                                    // disabled
                                     />
                                 </Grid>
                                 <Grid item xs={5}>

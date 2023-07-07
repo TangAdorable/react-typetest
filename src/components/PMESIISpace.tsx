@@ -3,7 +3,6 @@ import CytoscapeComponent from "react-cytoscapejs";
 import Cytoscape from "cytoscape";
 import COSEBilkent from "cytoscape-cose-bilkent";
 import fcose from "cytoscape-fcose";
-
 import {
   Box,
   Button,
@@ -22,6 +21,8 @@ import undoRedo from "cytoscape-undo-redo";
 import PmesiiDetail from "./PmesiiDetail";
 import HelpIcon from "@mui/icons-material/Help";
 import HelperDialog from "./Dialog/HelperDialog";
+import { useMyContext } from "./context/pmesiiContext";
+
 
 type Props = {
   pmesillNodes: any[] | [];
@@ -35,6 +36,8 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
 
   const handleOpenHelperWindow = () => setIsOpenHelperWindow(true)
   const handleCloseHelperWindow = () => setIsOpenHelperWindow(false)
+
+  const { setValue } = useMyContext();
 
   const cyRef = useRef<any | null>(null);
 
@@ -101,21 +104,25 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
       //   console.log( 'ascope ' + node.data("ascope") );
       //   console.log( 'name ' + node.data("name") );
 
-      cyRef.current.on("click", "node", function(evt:any){
+      cyRef.current.on("click", "node", function (evt: any) {
         const node = evt.target;
         const node_get = node.data();
-        console.log('node: ',node_get)
+        setValue(node_get)
+        // console.log('node: ', node_get)
       });
 
-      cyRef.current.on("click", "edge", function(evt:any){
+      cyRef.current.on("click", "edge", function (evt: any) {
         const edge = evt.target;
         const edge_get = edge.data();
-        console.log('relation: ',edge_get)
+        // console.log('relation: ', edge_get)
+        setValue(edge_get)
 
       });
 
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   return (
     <Box sx={{ width: "100%", height: "82vh" }}>
@@ -180,10 +187,10 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
             </IconButton>
           </Box>
         )}
-
         <HelperDialog handleClose={handleCloseHelperWindow} open={isOpenHelperWindow} />
-
       </Box>
+
+
     </Box>
   );
 }

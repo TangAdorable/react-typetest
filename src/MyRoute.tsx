@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from './App';
 import PMESIILabel from './components/PMESIILabel';
 
+
 export default function MyRoute() {
   const darkTheme = createTheme({
     palette: {
@@ -19,8 +20,9 @@ export default function MyRoute() {
         <DrawerLeft />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/pmesii" element={<PMESIILabel />} />
+          <Route path="/pmesii-label/:pmesiiLabel" element={<PMESIILabel />} />
           <Route path="/home" element={<Navigate to="/" />} />
+          {/* <Route path="/pmesii" element={<PMESIILabel />} /> */}
           {/* <Route path="/blog/:id" element={<Details/>}></Route> */}
         </Routes>
       </BrowserRouter>

@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import MyRoute from './MyRoute';
 import reportWebVitals from './reportWebVitals';
+import { MyContextProvider } from './components/context/pmesiiContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <MyContextProvider>
     <MyRoute />
+    </MyContextProvider>
   </React.StrictMode>
 );
 
