@@ -12,12 +12,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from "@mui/material/InputLabel";
-import { relationName as relationName_, arrowDirection as arrowDirection_ } from "../data/pmesii";
+import { relationName as relationName_, arrowDirection as arrowDirection_ } from "../constants/pmesii";
 import axios from "axios";
 import config from "../constants/config";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useMyContext } from "./context/pmesiiContext";
-import { countryASEAN, pmesiiName, ascopeName } from '../data/pmesii'
+import { useMyContext } from "../context/pmesiiContext";
+import { countryASEAN, pmesiiName, ascopeName } from '../constants/pmesii'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

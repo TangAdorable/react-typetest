@@ -15,15 +15,15 @@ export const pmesiiStyleSheet: any = [
       "font-size": 8,
 
       label: function (x: any) {
-        if (x.data("label") == undefined) {
+        if (x.data("label") === undefined) {
           return x.data("pmesii");
-        } else if (x.data("label") == "subAscope" && x.data("name") != null) {
+        } else if (x.data("label") === "SUB_ASCOPE" && x.data("name") != null) {
           return x.data("name");
-        } else if (x.data("label") == "ASCOPE" && x.data("ascope") != null) {
+        } else if (x.data("label") === "ASCOPE" && x.data("ascope") != null) {
           return x.data("ascope");
-        } else if (x.data("label") == "PMESII" && x.data("pmesii") != null) {
+        } else if (x.data("label") === "PMESII" && x.data("pmesii") != null) {
           return x.data("pmesii");
-        } else if (x.data("label") == "Country" && x.data("country") != null) {
+        } else if (x.data("label") === "Country" && x.data("country") != null) {
           return x.data("country");
         }
       },
@@ -85,27 +85,27 @@ export const pmesiiStyleSheet: any = [
       color: "white",
       label: "data(name)",
       "source-arrow-shape": function (ele: any) {
-        switch (ele.data("line")) {
-          case 2:
+        switch (ele.data("arrow_direction")) {
+          case 3:
             return "triangle";
+          case 2:
+            return "none";
           case 1:
-            return "none";
+            return "triangle";
           case 0:
-            return "none";
-          default:
             return "none";
         }
       },
       "target-arrow-shape": function (ele: any) {
-        switch (ele.data("line")) {
+        switch (ele.data("arrow_direction")) {
+          case 3:
+            return "triangle";
           case 2:
             return "triangle";
           case 1:
-            return "triangle";
+            return "none";
           case 0:
             return "none";
-          default:
-            return "triangle";
         }
       },
       "text-valign": "center",
@@ -117,7 +117,12 @@ export const pmesiiStyleSheet: any = [
       },
       "curve-style": "bezier",
       "line-style": function (ele: any) {
-        return ele.data("name") === "พึ่งพา" ? "dashed" : "solid";
+        switch (ele.data("line_type")){
+          case 0:
+            return "dashed";
+          case 1:
+            return "solid";
+        }
       },
     },
   },

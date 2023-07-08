@@ -21,7 +21,7 @@ import undoRedo from "cytoscape-undo-redo";
 import PmesiiDetail from "./PmesiiDetail";
 import HelpIcon from "@mui/icons-material/Help";
 import HelperDialog from "./Dialog/HelperDialog";
-import { useMyContext } from "./context/pmesiiContext";
+import { useMyContext } from "../context/pmesiiContext";
 
 
 type Props = {

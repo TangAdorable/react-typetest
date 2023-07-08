@@ -12,11 +12,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from "@mui/material/InputLabel";
-import { relationName as relationName_, arrowDirection as arrowDirection_ } from "../data/pmesii";
+import { relationName as relationName_, arrowDirection as arrowDirection_ ,
+line_type as line_type_} from "../constants/pmesii";
 import axios from "axios";
 import config from "../constants/config";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useMyContext } from "./context/pmesiiContext";
+import { useMyContext } from "../context/pmesiiContext";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -207,8 +208,12 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                                     <MenuItem value="">
                                                         <em>None</em>
                                                     </MenuItem>
-                                                    <MenuItem value={0} >- - - - - - - - - -</MenuItem>
-                                                    <MenuItem value={1} ><hr /></MenuItem>
+                                                    {line_type_.map((item)=>(
+                                                        <MenuItem key={item.id} value={item.id} >{item.name}</MenuItem>
+                                                    ))
+
+                                                    }
+                                                    
                                                 </Select>
 
                                             </FormControl>

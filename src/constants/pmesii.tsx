@@ -148,19 +148,30 @@ export const relationName = [
 
 export const arrowDirection = [
     {
-        id: -1,
+        id: 0,
         name: "ไม่ระบุ"
     },
     {
-        id: 0,
+        id: 1,
         name: "←"
     },
     {
-        id: 1,
+        id: 2,
         name: "→"
     },
     {
-        id: 2,
+        id: 3,
         name: "↔"
     },
+]
+
+export const line_type = [
+    {
+        id:0,
+        name:"- - - - - - - - - -"
+    },
+    {
+        id:1,
+        name:<hr />
+    }
 ]

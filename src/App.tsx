@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface labelName {
   id: number;
@@ -38,7 +38,7 @@ export default function App() {
   const tableCellClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     const labelName = (e.target as HTMLElement).innerHTML;
     // console.log(labelName)
-    navigate(`/pmesii-label/${labelName}`, {replace: true}  );
+    navigate(`/pmesii-label/${labelName}`, { replace: true });
   };
 
   return (
@@ -60,7 +60,11 @@ export default function App() {
                   key={row.id}>
                   <TableCell align="center">{row.id}</TableCell>
                   {/* <TableCell onClick={()=>{to={`/pmesii-label/${row.labels}`}}} align="left"> */}
-                  <TableCell onClick={tableCellClickHandler} align="left">
+                  <TableCell
+                    onClick={tableCellClickHandler}
+                    align="left"
+                    style={{ cursor: 'pointer' }}
+                  >
                     {row.labels}
                   </TableCell>
                 </TableRow>

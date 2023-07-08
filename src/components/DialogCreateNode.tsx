@@ -13,7 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { countryASEAN, pmesiiName, ascopeName } from '../data/pmesii'
+import { countryASEAN, pmesiiName, ascopeName } from '../constants/pmesii'
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import config from "../constants/config";
 import axios from "axios";
