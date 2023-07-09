@@ -12,8 +12,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from "@mui/material/InputLabel";
-import { relationName as relationName_, arrowDirection as arrowDirection_ ,
-line_type as line_type_} from "../constants/pmesii";
+import { relationName as relationName_, arrowDirection as arrowDirection_,
+    line_type as line_type_ } from "../constants/pmesii";
 import axios from "axios";
 import config from "../constants/config";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -29,80 +29,76 @@ const Item = styled(Paper)(({ theme }) => ({
 
 interface AlertDialogProps {
     open: boolean;
-    onClose: (isCreateRelation: boolean) => void;
+    onClose: (isCreateNode: boolean) => void;
 }
 
-interface createRelation {
-    node_id_1: number,
-    node_id_2: number,
-    label: string,
-    name: string,
-    line_type: number,
-    arrow_direction: number,
-    size: number
+interface updateRelation {
+    relation_id: number,
+    properties: any
 }
 
-export default function DialogCreateRelation({ open, onClose }: AlertDialogProps) {
-    const [sourceID, setSourceID] = useState<string | null>();
-    const [targetID, setTargetID] = useState<string | null>();
-    const [labelName, setLabelName] = useState<string>("Relation");
+export default function GridUpdateRelation({ open, onClose }: AlertDialogProps) {
+    const [sourceID, setSourceID] = useState<string | number>(0);
+    const [targetID, setTargetID] = useState<string | number>(0);
+    // const [labelName, setLabelName] = useState<string>("Relation");
     const [relationName, setRelationName] = useState<string>("");
     const [LineType, setLineType] = useState<string>();
     const [ArrowDirection, setArrowDirection] = useState<string>();
     const [size, setSize] = useState<string | number>(0);
     const [loading, setLoading] = React.useState(false);
+
     const { value } = useMyContext();
 
     const handleCancel = () => {
-        setSourceID(null)
-        setTargetID(null)
-        setLabelName("Relation") // fix ไปก่อน
+        setSourceID("")
+        setTargetID("")
         setRelationName("")
         setLineType("")
         setArrowDirection("")
         setSize(0)
         setLoading(false)
     };
-      
-      useEffect(() => {
-        if (value.node_labels !== undefined) {
-          if (sourceID === null) {
-            // คลิกครั้งแรก - เก็บค่าใน setSourceID
-            setSourceID(value.id);
-            console.log(value.id);
-          } else if (targetID === null && sourceID !== value.id) {
-            // คลิกครั้งที่สอง (และไม่ใช่คลิกเดียวกันกับ sourceID) - เก็บค่าใน setTargetID
-            setTargetID(value.id);
-            console.log(value.id);
-          }
-        }
-      }, [value, sourceID, targetID]);
-      
 
-    const handleSubmit = async (event: any) => {
+
+    useEffect(() => {
+        if (value.node_labels === undefined) {
+            // relation
+            setSourceID(value.source)
+            setTargetID(value.target)
+            setRelationName(value.name)
+            setLineType(value.line_type)
+            setArrowDirection(value.arrow_direction)
+            setSize(value.size)
+        }
+    }, [value]);
+
+
+    const handleSubmitRelation = async (event: any) => {
         event.preventDefault();
         setLoading(!loading);
 
-        const data: createRelation = {
-            node_id_1: parseInt(String(sourceID), 10),
-            node_id_2: parseInt(String(targetID), 10),
-            label: labelName,
-            name: relationName,
-            line_type: parseInt(String(LineType), 10),
-            arrow_direction: parseInt(String(ArrowDirection), 10),
-            size: parseInt(String(size), 10),
+        const data: updateRelation = {
+            relation_id: parseInt(value.id),
+            properties: {
+                "name": relationName,
+                "line_type": parseInt(String(LineType), 10),
+                "size": parseInt(String(size), 10),
+                "arrow_direction": parseInt(String(ArrowDirection), 10)
+            }
         }
-        console.log(data)
 
+        console.log(data)
         try {
             // await new Promise(r => setTimeout(r, 2000));
-            const res = await axios.post(config.SOFTNIX_PMESII_URL + "/create/relationship", data);
+            const res = await axios.post(config.SOFTNIX_PMESII_URL + "/update/relationship-propertie-add-update", data);
             if (res.status === 200) {
                 console.log("create success 200")
-                handleCancel();
-                onClose(true);
+
                 setLoading(loading)
+                handleCancel()
+                onClose(true)
             }
+
         } catch (error) {
             console.error('error:', error);
         }
@@ -112,8 +108,8 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
     return (
         <>
             <Dialog open={open} onClose={onClose} maxWidth={"md"} sx={{ '& .MuiDialog-paper': { width: '40%' } }}>
-                <DialogTitle >Create Relationship</DialogTitle>
-                <form onSubmit={handleSubmit}>
+                <DialogTitle sx={{ color: '#d1ff33' }} >Update Relationship</DialogTitle>
+                <form onSubmit={handleSubmitRelation}>
                     <DialogContent>
                         <Grid container
                             rowSpacing={0.5} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
@@ -130,10 +126,9 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={sourceID}
                                         onChange={(event) => setSourceID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                    // disabled
+                                        disabled
                                     />
                                 </Grid>
-
                                 <Grid item xs={5}>
                                     <Item>Target: ID Node</Item>
                                 </Grid>
@@ -145,7 +140,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                         value={targetID}
                                         onChange={(event) => setTargetID(event.target.value)}
                                         style={{ backgroundColor: "#424242" }}
-                                    // disabled
+                                        disabled
                                     />
                                 </Grid>
                                 <Grid item xs={5}>
@@ -211,11 +206,8 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                                                     {line_type_.map((item)=>(
                                                         <MenuItem key={item.id} value={item.id} >{item.name}</MenuItem>
                                                     ))
-
                                                     }
-                                                    
                                                 </Select>
-
                                             </FormControl>
                                         </Grid>
                                     </Grid>
@@ -285,7 +277,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
                             handleCancel()
                             onClose(false)
                         }}>ยกเลิก</Button>
-                        <LoadingButton type="submit" loading={loading} color="success" variant="contained">สร้าง</LoadingButton>
+                        <LoadingButton type="submit" loading={loading} color="success" variant="contained">อัพเดท</LoadingButton>
                     </DialogActions>
                 </form>
             </Dialog>

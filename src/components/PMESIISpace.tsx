@@ -126,8 +126,8 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
 
   return (
     <Box sx={{ width: "100%", height: "82vh" }}>
-      <Stack direction={"row"} justifyContent={"space-between"}>
-        <Typography>PMESII</Typography>
+      <Stack direction={"row"} justifyContent={"flex-end"}>
+        {/* <Typography>PMESII</Typography> */}
 
         <Stack direction={"row"} spacing={1}>
           <FormControlLabel
@@ -136,6 +136,7 @@ export default function PmesiiSpace({ pmesillNodes }: Props) {
           />
           <Button
             variant="outlined"
+            size="small"
             startIcon={<DownloadIcon />}
             onClick={handleExportClick}
           >

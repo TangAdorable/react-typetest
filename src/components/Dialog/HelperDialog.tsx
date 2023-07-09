@@ -102,7 +102,7 @@ const colorLineType = [
     color: "Green",
   },
   {
-    name: "ควบคุม ตัดสิน กำหนดทิศทาง",
+    name: "ควบคุม ตัดสิน กำหนดทิศทาง ไกล่เกลี่ย",
     color: "yellow",
   },
   {

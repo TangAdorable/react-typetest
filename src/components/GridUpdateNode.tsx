@@ -11,15 +11,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import IconButton from '@mui/material/IconButton';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import { countryASEAN, pmesiiName, ascopeName } from '../constants/pmesii'
-import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
-import config from "../constants/config";
 import axios from "axios";
+import config from "../constants/config";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useParams } from "react-router-dom";
-
+import { useMyContext } from "../context/pmesiiContext";
+import { countryASEAN, pmesiiName, ascopeName } from '../constants/pmesii'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -29,106 +25,112 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-type AlertDialogProps = {
+interface AlertDialogProps {
     open: boolean;
     onClose: (isCreateNode: boolean) => void;
-};
+}
+
+interface updateNode {
+    node_id: number,
+    properties: any
+}
+
 
 const SizeField = (props: any) => {
-    const { size, value, change } = props;
+    const { value, change } = props;
     return (
-        <>
-            {size &&
-                <TextField
-                    fullWidth
-                    id="outlined-number"
-                    label="Size"
-                    type="number"
-                    size="small"
-                    value={value}
-                    onChange={change}
-                    inputProps={{
-                        min: -25,
-                        max: 25,
-                    }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-            }
-        </>
+        <TextField
+            fullWidth
+            id="outlined-number"
+            label="Size"
+            type="number"
+            size="small"
+            value={value}
+            onChange={change}
+            inputProps={{
+                min: -25,
+                max: 25,
+            }}
+            InputLabelProps={{
+                shrink: true,
+            }}
+        />
     );
 };
 
-interface createNode {
-    labels?: string,
-    country: string,
-    pmesii: string,
-    pmesii_size?: number,
-    ascope: string,
-    ascope_size?: number,
-    sub_ascope_name: string,
-    sub_ascope_size?: number
 
-}
-
-export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
-    const { pmesiiLabel } = useParams<string>();
+export default function GridUpdateNode({ open, onClose }: AlertDialogProps) {
+    const [loading, setLoading] = React.useState(false);
     const [country, setCountry] = useState<string>("");
     const [pmesii, setPmesii] = useState<string>("");
     const [ascope, setAscope] = useState<string>("");
     const [subAscope, setSubAscope] = useState<string>("");
 
-    const [pmesiiSize, setPmesiiSize] = useState<string | number>(15);
-    const [ascopeSize, setAscopeSize] = useState<string | number>(10);
-    const [subAscopeSize, setSubAscopeSize] = useState<string | number>(5);
-    const [showSize, setShowSize] = useState(false);
-    const [loading, setLoading] = React.useState(false);
-
+    const [pmesiiSize, setPmesiiSize] = useState<string | number>("");
+    const [ascopeSize, setAscopeSize] = useState<string | number>("");
+    const [subAscopeSize, setSubAscopeSize] = useState<string | number>("");
+    const { value } = useMyContext();
 
     const handleCancel = () => {
-        setCountry("");
-        setPmesii("");
-        setAscope("");
-        setSubAscope("");
-        setShowSize(false);
-        setPmesiiSize(15);
-        setAscopeSize(10);
-        setSubAscopeSize(5);
+        setLoading(false)
+        setCountry("")
+        setPmesii("")
+        setAscope("")
+        setSubAscope("")
+        setPmesiiSize("")
+        setAscopeSize("")
+        setSubAscopeSize("")
+
     };
 
-    const handleSubmit = async (event: any) => {
+
+    useEffect(() => {
+        if (value.node_labels !== undefined) {
+            // node
+            setCountry(value.country)
+            setPmesii(value.pmesii)
+            setAscope(value.ascope)
+            setSubAscope(value.name)
+
+            switch (value.label) {
+                case "Country":
+                    break;
+                case "PMESII":
+                    setPmesiiSize(value.size)
+                    break;
+
+                case "ASCOPE":
+                    setAscopeSize(value.size)
+                    break;
+
+                case "SUB_ASCOPE":
+                    setSubAscopeSize(value.size)
+                    break;
+            }
+        }
+    }, [value]);
+
+
+    const handleSubmitNode = async (event: any) => {
         event.preventDefault();
         setLoading(!loading);
 
-        const data: createNode = {
-            labels: pmesiiLabel,
-            country: country,
-            pmesii: pmesii,
-            ascope: ascope,
-            sub_ascope_name: subAscope
-        }
-
-        if (pmesiiSize !== 15) {
-            data.pmesii_size = parseInt(String(pmesiiSize), 10);
-        }
-        if (ascopeSize !== 10) {
-            data.ascope_size = parseInt(String(ascopeSize), 10);
-        }
-        if (subAscopeSize !== 5) {
-            data.sub_ascope_size = parseInt(String(subAscopeSize), 10);
+        const data: updateNode = {
+            node_id: parseInt(value.id),
+            properties: { "name": subAscope, "size": parseInt(String(subAscopeSize), 10) }
         }
 
         try {
             // await new Promise(r => setTimeout(r, 2000));
-            const res = await axios.post(config.SOFTNIX_PMESII_URL + "/create/node", data);
+            const res = await axios.post(config.SOFTNIX_PMESII_URL + "/update/node-properties-add-update", data);
             if (res.status === 200) {
-                // console.log(res.data)
-                // console.log("create success 200")
+                console.log("create success 200")
+
                 setLoading(loading)
-                handleCancel();
-                onClose(true);
+                handleCancel()
+                onClose(true)
             }
+
         } catch (error) {
             console.error('error:', error);
         }
@@ -138,25 +140,14 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
 
     return (
         <>
-            <Dialog open={open} onClose={onClose} maxWidth={"sm"}>
-                {/* sx={{ paddingBottom: 0 ,backgroundColor: "#9e9e9e" }} */}
-                <DialogTitle sx={{ paddingBottom: 1 }}>Create Node</DialogTitle>
-                <form onSubmit={handleSubmit}>
+            <Dialog open={open} onClose={onClose} maxWidth={"md"} sx={{ '& .MuiDialog-paper': { width: '40%' } }}>
+                <DialogTitle sx={{ color: '#d1ff33' }} >Update Node</DialogTitle>
+                <form onSubmit={handleSubmitNode}>
                     <DialogContent>
                         <Grid container
                             rowSpacing={1} columnSpacing={{ xs: 0.5, sm: 0.5, md: 0.5 }}
                             sx={{ marginTop: '-30px' }}
                         >
-                            <Grid item xs={11.3} container
-                                direction="row"
-                                justifyContent="flex-end"
-                                alignItems="center">
-                                <IconButton size="small" onClick={() => setShowSize(!showSize)}>
-                                    {showSize ? <IndeterminateCheckBoxIcon /> : <AddBoxIcon />}
-
-                                </IconButton>
-                            </Grid>
-
                             <Grid item xs={4}>
                                 <Item>Country</Item>
                             </Grid>
@@ -173,6 +164,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                             value={country}
                                             onChange={(event: SelectChangeEvent) => setCountry(event.target.value)}
                                             displayEmpty
+                                            disabled
                                         >
                                             <MenuItem value="">
                                                 <em>None</em>
@@ -200,6 +192,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                             value={pmesii}
                                             onChange={(event: SelectChangeEvent) => setPmesii(event.target.value)}
                                             displayEmpty
+                                            disabled
                                         >
                                             <MenuItem value="">
                                                 <em>None</em>
@@ -212,10 +205,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                 </Grid>
                             </Grid>
                             <Grid item xs={1.5}>
-                                <SizeField
-                                    size={showSize}
-                                    value={pmesiiSize}
-                                    change={(event: any) => setPmesiiSize(event.target.value)} />
+                                <SizeField value={pmesiiSize} change={(event: any) => setPmesiiSize(event.target.value)} />
                             </Grid>
                             <Grid item xs={4}>
                                 <Item>ASCOPE</Item>
@@ -233,6 +223,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                             value={ascope}
                                             onChange={(event: SelectChangeEvent) => setAscope(event.target.value)}
                                             displayEmpty
+                                            disabled
                                         >
                                             <MenuItem value="">
                                                 <em>None</em>
@@ -246,10 +237,7 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                 </Grid>
                             </Grid>
                             <Grid item xs={1.5}>
-                                <SizeField
-                                    size={showSize}
-                                    value={ascopeSize}
-                                    change={(event: any) => setAscopeSize(event.target.value)} />
+                                <SizeField value={ascopeSize} change={(event: any) => setAscopeSize(event.target.value)} />
                             </Grid>
                             <Grid item xs={4}>
                                 <Item>Name</Item>
@@ -267,20 +255,16 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
                                 />
                             </Grid>
                             <Grid item xs={1.5}>
-                                <SizeField
-                                    size={showSize}
-                                    value={subAscopeSize}
-                                    change={(event: any) => setSubAscopeSize(event.target.value)} />
+                                <SizeField value={subAscopeSize} change={(event: any) => setSubAscopeSize(event.target.value)} />
                             </Grid>
                         </Grid>
                     </DialogContent>
                     <DialogActions>
-                        <Button color="error"
-                            onClick={() => {
-                                handleCancel()
-                                onClose(false)
-                            }}>ยกเลิก</Button>
-                        <LoadingButton type="submit" loading={loading} color="success" variant="contained">สร้าง</LoadingButton>
+                        <Button color="error" onClick={() => {
+                            handleCancel()
+                            onClose(false)
+                        }}>ยกเลิก</Button>
+                        <LoadingButton type="submit" loading={loading} color="success" variant="contained">อัพเดท</LoadingButton>
                     </DialogActions>
                 </form>
             </Dialog>

@@ -4,6 +4,7 @@ import DrawerLeft from './components/DrawerLeft';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from './App';
 import PMESIILabel from './components/PMESIILabel';
+import CreateRelationName from './components/CreateRelationName';
 
 
 export default function MyRoute() {
@@ -21,6 +22,7 @@ export default function MyRoute() {
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/pmesii-label/:pmesiiLabel" element={<PMESIILabel />} />
+          <Route path="/create-relation-name" element={<CreateRelationName/>} />
           <Route path="/home" element={<Navigate to="/" />} />
           {/* <Route path="/pmesii" element={<PMESIILabel />} /> */}
           {/* <Route path="/blog/:id" element={<Details/>}></Route> */}

@@ -79,7 +79,7 @@ const titleLeft = [
   },
   {
     icon: <InboxIcon />,
-    name: "PMESII",
+    name: "Generate PMESII",
     link: "#"
   }
 
