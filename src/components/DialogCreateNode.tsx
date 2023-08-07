@@ -64,8 +64,10 @@ interface createNode {
     labels?: string,
     country: string,
     pmesii: string,
+    pmesii_color:string,
     pmesii_size?: number,
     ascope: string,
+    ascope_color:string,
     ascope_size?: number,
     sub_ascope_name: string,
     sub_ascope_size?: number
@@ -105,19 +107,25 @@ export default function DialogCreateNode({ open, onClose }: AlertDialogProps) {
             labels: pmesiiLabel,
             country: country,
             pmesii: pmesii,
+            pmesii_color: "#357a38",    // fetch from database
+            pmesii_size:parseInt(String(pmesiiSize), 10),
             ascope: ascope,
-            sub_ascope_name: subAscope
+            ascope_color: "#6fbf73",    // fetch from database
+            ascope_size:parseInt(String(ascopeSize), 10),
+            sub_ascope_name: subAscope,
+            sub_ascope_size:parseInt(String(subAscopeSize), 10)
+
         }
 
-        if (pmesiiSize !== 15) {
-            data.pmesii_size = parseInt(String(pmesiiSize), 10);
-        }
-        if (ascopeSize !== 10) {
-            data.ascope_size = parseInt(String(ascopeSize), 10);
-        }
-        if (subAscopeSize !== 5) {
-            data.sub_ascope_size = parseInt(String(subAscopeSize), 10);
-        }
+        // if (pmesiiSize !== 15) {
+        //     data.pmesii_size = parseInt(String(pmesiiSize), 10);
+        // }
+        // if (ascopeSize !== 10) {
+        //     data.ascope_size = parseInt(String(ascopeSize), 10);
+        // }
+        // if (subAscopeSize !== 5) {
+        //     data.sub_ascope_size = parseInt(String(subAscopeSize), 10);
+        // }
 
         try {
             // await new Promise(r => setTimeout(r, 2000));

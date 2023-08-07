@@ -37,6 +37,7 @@ interface createRelation {
     node_id_2: number,
     label: string,
     name: string,
+    color:string,
     line_type: number,
     arrow_direction: number,
     size: number
@@ -88,6 +89,7 @@ export default function DialogCreateRelation({ open, onClose }: AlertDialogProps
             node_id_2: parseInt(String(targetID), 10),
             label: labelName,
             name: relationName,
+            color:"#357a38",    // fetch from database
             line_type: parseInt(String(LineType), 10),
             arrow_direction: parseInt(String(ArrowDirection), 10),
             size: parseInt(String(size), 10),

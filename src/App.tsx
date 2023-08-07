@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import config from './constants/config';
 
 interface labelName {
   id: number;
@@ -27,7 +28,7 @@ export default function App() {
 
   const fetchLabels = async () => {
     try {
-      const response = await axios.get<labelName[]>('http://192.168.10.225:8000/search/all-labels-name');
+      const response = await axios.get<labelName[]>(config.SOFTNIX_PMESII_URL + "/search/all-labels-name");
       setLabel(response.data);
     } catch (error) {
       console.error('Error fetching users:', error);
