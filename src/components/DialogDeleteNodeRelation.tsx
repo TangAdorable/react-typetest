@@ -5,7 +5,7 @@ import GridDeleteRelation from "./GridDeleteRelation";
 
 interface AlertDialogProps {
     open: boolean;
-    onClose: (isCreateNode: boolean) => void;
+    onClose: (isDeleteRelation: boolean) => void;
 }
 
 export default function DialogUpdateNodeRelation({ open, onClose }: AlertDialogProps) {

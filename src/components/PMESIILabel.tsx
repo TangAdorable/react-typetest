@@ -48,18 +48,18 @@ export default function PMESIILabel() {
 
   // update node relation
   const UpdateNodeRelationOpen = () => setUpdateNodeRelation(true);
-  const UpdateNodeRelationClose = async (isCreateRelation:boolean) => {
+  const UpdateNodeRelationClose = async (isUpdateRelation:boolean) => {
     setUpdateNodeRelation(false);
-    if(isCreateRelation){
+    if(isUpdateRelation){
       await loadPmesiiNodes();
     }
   }
 
   // delete node relation
   const DeleteNodeRelationOpen = () => setDeleteNodeRelation(true);
-  const DeleteNodeRelationClose = async (isCreateRelation:boolean) => {
+  const DeleteNodeRelationClose = async (isDeleteRelation:boolean) => {
     setDeleteNodeRelation(false);
-    if(isCreateRelation){
+    if(isDeleteRelation){
       await loadPmesiiNodes();
     }
   }

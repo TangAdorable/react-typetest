@@ -5,7 +5,7 @@ import GridUpdateNode from "./GridUpdateNode";
 
 interface AlertDialogProps {
     open: boolean;
-    onClose: (isCreateNode: boolean) => void;
+    onClose: (isUpdateRelation: boolean) => void;
 }
 
 export default function DialogUpdateNodeRelation({ open, onClose }: AlertDialogProps) {
